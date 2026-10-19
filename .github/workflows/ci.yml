@@ -107,6 +107,14 @@ jobs:
         run: npx jest --selectProjects unit --forceExit
         continue-on-error: true
 
+      # Keep the live OpenAPI response checks as a blocking gate even while
+      # unrelated legacy unit-test failures are being tracked separately.
+      - name: Generate OpenAPI specification
+        run: npm run generate-openapi
+
+      - name: OpenAPI response contract tests
+        run: npx jest src/tests/contract/api.contract.test.js --selectProjects unit --runInBand
+
       - name: Mutation tests
         run: npm run stryker
 
