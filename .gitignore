@@ -56,6 +56,10 @@ migrations_list.txt
 frontend/.next/
 frontend/tsconfig.tsbuildinfo
 
+# Local merge-tool artifacts
+*.orig
+*.rej
+
 # Stryker output
 .stryker-tmp/
 reports/
